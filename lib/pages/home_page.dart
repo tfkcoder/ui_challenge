@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       ),
       body: TabBarView(
         controller: _tabController,
+         physics: const NeverScrollableScrollPhysics(),
         children: const <Widget>[
           HomeScreenWidget(),
           SearchScreenWidget(),
@@ -114,6 +115,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         child: Container(
           color: Styles.cardColor, // Set the desired background color
           child: Row(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildNavItem(Icons.home, '', 0),
