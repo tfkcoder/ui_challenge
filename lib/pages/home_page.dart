@@ -150,20 +150,20 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     size: 36,
                     color: isSelected ? Styles.btnColor : Styles.textColor,
                   ),
-                  Positioned(
-                    top: 0,
-                    left: -18,
-                    right: -18,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      height: isSelected ? 4 : 0,
-                      width: isSelected ? 72 : 0,
-                      decoration: BoxDecoration(
-                        color: isSelected ? Styles.btnColor : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   top: 0,
+                  //   left: -18,
+                  //   right: -18,
+                  //   child: AnimatedContainer(
+                  //     duration: const Duration(milliseconds: 200),
+                  //     height: isSelected ? 4 : 0,
+                  //     width: isSelected ? 72 : 0,
+                  //     decoration: BoxDecoration(
+                  //       color: isSelected ? Styles.btnColor : Colors.transparent,
+                  //       borderRadius: BorderRadius.circular(2),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

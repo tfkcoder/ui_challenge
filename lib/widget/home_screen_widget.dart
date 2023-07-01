@@ -141,7 +141,7 @@ class HomeScreenWidget extends StatelessWidget {
           ),
           // add containers
           Padding(
-            padding: const EdgeInsets.all(26),
+            padding: const EdgeInsets.only(left:26,right:26,top: 8),
             child: Row(
               children: [
                 Container(
