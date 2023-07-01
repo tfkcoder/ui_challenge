@@ -34,61 +34,58 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Styles.blackColor,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Styles.darkColor,
-          actions: [
-            IconButton(
-              onPressed: () {},
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Styles.darkColor,
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.shopping_bag_outlined,
+              color: Styles.textColor,
+            ),
+          ),
+          const SizedBox(
+            width: 8,
+          ),
+          Container(
+            margin: const EdgeInsets.only(right: 24.0),
+            child: CircleAvatar(
+              backgroundColor: Styles.btnColor,
+              backgroundImage: const AssetImage("assets/images/profile.png"),
+            ),
+          )
+        ],
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
               icon: Icon(
-                Icons.shopping_bag_outlined,
+                Icons.notes,
                 color: Styles.textColor,
               ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 24.0),
-              child: CircleAvatar(
-                backgroundColor: Styles.btnColor,
-                backgroundImage: const AssetImage("assets/images/profile.png"),
-              ),
-            )
-          ],
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Styles.textColor,
-                ),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              );
-            },
-          ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
         ),
-        drawer: Drawer(
-          backgroundColor: Styles.darkColor,
-          width: MediaQuery.of(context).size.width * 0.8,
-        ),
-        body: Container(
-          color: Styles.blackColor,
-          child: TabBarView(
-            controller: _tabController,
-            children: const <Widget>[
-              HomeScreenWidget(),
-              SearchScreenWidget(),
-              FavouriteScreenWidget(),
-              TransactionScreenWidget(),
-            ],
-          ),
-        ),
-        bottomNavigationBar: _buildCustomBottomNavigationBar(),
+      ),
+      drawer: Drawer(
+        backgroundColor: Styles.darkColor,
+        width: MediaQuery.of(context).size.width * 0.8,
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const <Widget>[
+          HomeScreenWidget(),
+          SearchScreenWidget(),
+          FavouriteScreenWidget(),
+          TransactionScreenWidget(),
+        ],
+      ),
+      bottomNavigationBar: Material(
+        color: Styles.darkColor,
+        child: _buildCustomBottomNavigationBar(),
       ),
     );
   }
@@ -122,7 +119,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               _buildNavItem(Icons.home, '', 0),
               _buildNavItem(CupertinoIcons.search, '', 1),
               _buildNavItem(CupertinoIcons.heart_fill, '', 2),
-              _buildNavItem(Icons.file_copy, '', 3),
+              _buildNavItem(Icons.assignment, '', 3),
             ],
           ),
         ),
@@ -131,32 +128,55 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   }
 
   Widget _buildNavItem(IconData iconData, String label, int index) {
+    bool isSelected = _tabController.index == index;
+
     return GestureDetector(
       onTap: () {
         setState(() {
           _tabController.animateTo(index);
         });
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 19),
-            child: Icon(
-              iconData,
-              size: 36,
-              color: _tabController.index == index ? Styles.btnColor : Styles.textColor,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 8),
+              child: Stack(
+                children: [
+                  Icon(
+                    iconData,
+                    size: 36,
+                    color: isSelected ? Styles.btnColor : Styles.textColor,
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: -18,
+                    right: -18,
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      height: isSelected ? 4 : 0,
+                      width: isSelected ? 72 : 0,
+                      decoration: BoxDecoration(
+                        color: isSelected ? Styles.btnColor : Colors.transparent,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              color: _tabController.index == index ? Styles.btnColor : Styles.textColor,
-              fontWeight: FontWeight.bold,
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                color: isSelected ? Styles.btnColor : Styles.textColor,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
