@@ -100,16 +100,13 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
           blurRadius: 6,
           offset: const Offset(0, -6),
         ),
+       
       ],
-     
-    ),
-    child: Container(
-       decoration:const BoxDecoration(
-        borderRadius:  BorderRadius.only(
+       borderRadius:  BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
       ),
-       ),
+    ),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -165,8 +162,7 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
             ),
           ),
         ],
-      ),
-    ),
+      )
   );
 }
 

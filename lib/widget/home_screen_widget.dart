@@ -193,7 +193,10 @@ class HomeScreenWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Text(
+                           Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                               Text(
                               "FRUIT",
                               textAlign: TextAlign.start,
                               style: TextStyle(
@@ -218,6 +221,8 @@ class HomeScreenWidget extends StatelessWidget {
                                   fontSize: 16,
                                   fontWeight: FontWeight.w800),
                             ),
+                            ],
+                           ),
                             Padding(
                               padding:
                                   const EdgeInsets.only(left: 90, right: 0),
@@ -286,7 +291,10 @@ class HomeScreenWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Text(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
                               "FRUIT",
                               textAlign: TextAlign.start,
                               style: TextStyle(
@@ -310,6 +318,8 @@ class HomeScreenWidget extends StatelessWidget {
                                   color: Styles.btnColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w800),
+                            ),
+                              ],
                             ),
                             Padding(
                               padding:
